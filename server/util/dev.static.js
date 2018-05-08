@@ -21,6 +21,7 @@ const mfs = new MemoryFs
 const serverCompiler = webpack(serverConfig)
 serverCompiler.outputFileSystem = mfs
 let serverBundle
+
 serverCompiler.watch({}, (err, stats) => {
   if (err) throw err
   stats = stats.toJson()
@@ -36,6 +37,7 @@ serverCompiler.watch({}, (err, stats) => {
   m._compile(bundle, 'server-entry.js')
   serverBundle = m.exports.default
 })
+
 module.exports = function (app) {
   app.use('/public', proxy({
     target: 'http://0.0.0.0:8888'
