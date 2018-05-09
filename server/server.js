@@ -3,9 +3,10 @@ const ReactSSR = require('react-dom/server')
 const fs = require('fs')
 const path = require('path')
 const app = express()
+const favicon = require('serve-favicon')
 
 const isDev = process.env.NODE_ENV === 'development'
-
+app.use(favicon(path.resolve(__dirname, '../favicon.ico')))
 
 if (!isDev) {
   const serverEntry = require('../dist/server-entry').default //* 因为在 server-entry 里面是采用 es6 的语法 export default 的形式，所以在 conmmonJS 里面引入会引入整个对象，所以还要加 default

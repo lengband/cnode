@@ -8,7 +8,7 @@ const ReactDomServer = require('react-dom/server')
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
-    axios.get('http://localhost:8888/pubilc/index.html')
+    axios.get('http://localhost:8888/public/index.html')
       .then(res => {
         resolve(res.data)
       })
