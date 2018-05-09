@@ -8,7 +8,7 @@ const ReactDomServer = require('react-dom/server')
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
-    axios.get('http//localhost:8888/pubilc/index.html')
+    axios.get('http://localhost:8888/pubilc/index.html')
       .then(res => {
         resolve(res.data)
       })
@@ -34,7 +34,7 @@ serverCompiler.watch({}, (err, stats) => {
   )
   const bundle = mfs.readFileSync(bundlePath, 'utf-8')
   const m = new Module()
-  m._compile(bundle, 'server-entry.js')
+  m._compile(bundle, 'server-entry.js') // 因为 bundle 此时是一个 string，而不是 js模块，通过这种方式使他变成 js模块
   serverBundle = m.exports.default
 })
 
